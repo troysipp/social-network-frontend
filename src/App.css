@@ -40,31 +40,14 @@ a {
 
 .nav-items {
   margin-top: 105px;
-  padding: 20px;
-  padding-bottom: 20px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  padding: 15px;
   background-color: #5b5b5b;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
