@@ -1,0 +1,10 @@
+export const CREATE_EVENT = "CREATE_EVENT";
+export const DELETE_EVENT = "DELETE_EVENT";
+export const REQUEST_EVENTS = "REQUEST_EVENTS";
+export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
+
+// export const CREATE_STOCK =  'CREATE_STOCK'
+// export const REMOVE_STOCK =  'REMOVE_STOCK'
+// export const REQUEST_STOCKS = 'REQUEST_STOCKS'
+// export const RECEIVE_STOCKS = 'RECEIVE_STOCKS'
+// export const INVALIDATE_STOCKS = 'INVALIDATE_STOCKS'
