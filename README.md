@@ -8,6 +8,20 @@ To build an app that makes moving to a new city easy and fun. I wanted functiona
 
 The user authentication works, and currently everyone who visits the site can see any of the events posted. Further efforts would involve getting the app to recognize which user was signed in, which city they had selected, and filter events accordingly. The current app works for authentication and then provides an approximation of the views available to a signed in user "Troy Sipprelle."
 
+## Result
+
+Deployed front-end:
+
+http://social-network.surge.sh/
+
+Deployed back-end:
+
+https://protected-basin-65203.herokuapp.com/
+
+Back-end repo:
+
+https://github.com/troysipp/social-network-backend
+
 ## Steps
 
 In building this app, I found both of these tutorials very helpful:
