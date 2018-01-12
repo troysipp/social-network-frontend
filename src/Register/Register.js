@@ -10,13 +10,6 @@ const form = reduxForm({
 
 const formatField = value => value;
 
-// const renderField = field => (
-//   <div>
-//     <input className="form-control" {...field.input} />
-//     {field.touched && field.error && <div className="error">{field.error}</div>}
-//   </div>
-// );
-
 function validate(formProps) {
   const errors = {};
   if (!formProps.email) {

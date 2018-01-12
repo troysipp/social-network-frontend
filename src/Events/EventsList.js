@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { axios } from "axios";
-// import {Link} from "react-rourter-dom"
 
 import { fetchEventsIfNeeded } from "../actions/events";
+import store from "../store";
 import "./EventsList.css";
 
 class EventsList extends Component {
@@ -22,7 +22,7 @@ class EventsList extends Component {
 
   render() {
     let events = this.props.events.map((event, i) => {
-      // let pathname = `/events/...`
+      console.log(event);
       return (
         <div className="event" key={i}>
           <span className="bold">{event.description}</span>
@@ -33,13 +33,18 @@ class EventsList extends Component {
           </p>
           <span className="attendance">
             <span>
-              <p>Attendance #</p>
+              <p>
+                People coming so far:{" "}
+                <span className="bold">{event.attendees.length}</span>
+              </p>
             </span>
-            <span>
-              <button type="submit" className="join">
-                Join em!
-              </button>
-            </span>
+            {store.getState().auth.authenticated && (
+              <span>
+                <button type="submit" className="join">
+                  Join em!
+                </button>
+              </span>
+            )}
           </span>
         </div>
       );

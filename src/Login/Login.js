@@ -9,16 +9,6 @@ const form = reduxForm({
   form: "login"
 });
 
-// const renderField = field => {
-//   return (
-//     <div>
-//       <input className="form-control" {...field.input} />
-//       {field.touched &&
-//         field.error && <div className="error">{field.error}</div>}
-//     </div>
-//   );
-// };
-
 const formatField = value => value;
 
 class Login extends Component {
