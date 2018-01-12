@@ -7,9 +7,11 @@ import { connect } from "react-redux";
 import Home from "./Home/Home";
 import Profile from "./Profile/Profile";
 import Nav from "./Nav/Nav";
-import logo from "./logo.svg";
 import Login from "./Login/Login";
+import Register from "./Register/Register";
 import Logout from "./Logout/Logout";
+import Auth from "./Auth/Auth";
+import store from "./store";
 import {
   loginUser,
   fetchQuote,
@@ -39,14 +41,14 @@ class App extends Component {
   //   this.retrieveEvents(console.log());
   // }
   render() {
-    const {
-      dispatch,
-      quote,
-      isAuthenticated,
-      errorMessage,
-      isSecretQuote
-    } = this.props;
-    console.log(this.props);
+    // const {
+    //   dispatch,
+    //   quote,
+    //   isAuthenticated,
+    //   errorMessage,
+    //   isSecretQuote
+    // } = this.props;
+    // console.log(this.props);
     return (
       <div className="App">
         <div className="nav">
@@ -55,39 +57,31 @@ class App extends Component {
             <Link to="/home" className="nav-item">
               Home
             </Link>
-            <Link to="/profile" className="nav-item">
-              Profile
-            </Link>
-            {!isAuthenticated && (
-              // <Link
-              //   to="/login"
-              //   className="nav-item"
-              //   errorMessage={errorMessage}
-              //   onLoginClick={creds => dispatch(loginUser(creds))}
-              // >
-              //   Login
-              // </Link>
-              <Login
-                errorMessage={errorMessage}
-                onLoginClick={creds => this.props.dispatch(loginUser(creds))}
-              />
+            {store.getState().auth.authenticated && (
+              <div>
+                <Link to="/profile" className="nav-item">
+                  Profile
+                </Link>
+                <Link to="/logout" component={Logout} />
+              </div>
             )}
-            {isAuthenticated && (
-              // <Link
-              //   to="/logout"
-              //   className="nav-item"
-              //   onLogoutClick={() => dispatch(logoutUser())}
-              // >
-              //   Logout
-              // </Link>
-              <Logout onLogoutClick={() => dispatch(logoutUser())} />
+            {!store.getState().auth.authenticated && (
+              <div>
+                <Link to="/login" className="nav-item">
+                  Login
+                </Link>
+                <Link to="/register" className="nav-item">
+                  Register
+                </Link>
+              </div>
             )}
           </div>
         </div>
         <Switch className="body">
-          <Route exact path="/home" component={Home} />
+          <Route exact path="/home" component={Auth(Home)} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
           <Route path="/*" render={() => <Redirect to="/home" />} />
         </Switch>
       </div>
@@ -95,21 +89,44 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  errorMessage: PropTypes.string
-};
+// {/* <div className="site-entry"> */}
+// {/* <Login
+//       errorMessage={errorMessage}
+//       onLoginClick={creds => this.props.dispatch(loginUser(creds))}
+//     />
+//     <Link to="/register" className="nav-item">
+//       Register
+//     </Link>
+//   </div> */}
+// {/* )}
+// {isAuthenticated && ( */}
+// {/* // <Link */}
+// {/* //   to="/logout"
+//   //   className="nav-item"
+//   //   onLogoutClick={() => dispatch(logoutUser())}
+//   // >
+//   //   Logout
+//   // </Link>
+//   <Logout onLogoutClick={() => dispatch(logoutUser())} /> */}
+// {/* )} */}
+
+// App.propTypes = {
+//   dispatch: PropTypes.func.isRequired,
+//   isAuthenticated: PropTypes.bool.isRequired,
+//   errorMessage: PropTypes.string
+// };
+// //
+// function mapStateToProps(state) {
+//   const { auth } = state;
+//   // const { event, authenticated } = quotes;
+//   const { isAuthenticated, errorMessage } = auth;
 //
-function mapStateToProps(state) {
-  const { auth } = state;
-  // const { event, authenticated } = quotes;
-  const { isAuthenticated, errorMessage } = auth;
+//   return {
+//     isAuthenticated,
+//     errorMessage
+//   };
+// }
 
-  return {
-    isAuthenticated,
-    errorMessage
-  };
-}
-
-export default connect(mapStateToProps)(withRouter(App));
+export default // connect(mapStateToProps)(
+withRouter(App);
+// );

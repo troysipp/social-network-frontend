@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { reducer as formReducer } from "redux-form";
 
 import {
   CREATE_EVENT,
@@ -7,10 +8,14 @@ import {
   RECEIVE_EVENTS
 } from "../constants/events";
 import {
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
-  LOGOUT_SUCCESS
+  // LOGIN_REQUEST,
+  // LOGIN_SUCCESS,
+  // LOGIN_FAILURE,
+  // LOGOUT_SUCCESS
+  AUTH_USER,
+  UNAUTH_USER,
+  AUTH_ERROR,
+  PROTECTED_TEST
 } from "../constants/users";
 
 function eventsReducer(
@@ -39,29 +44,36 @@ function eventsReducer(
 
 function usersReducer(
   state = {
-    isFetching: false,
-    isAuthenticated: localStorage.getItem("id_token") ? true : false
+    error: "",
+    message: "",
+    content: "",
+    authenticated: false
   },
   action
 ) {
   switch (action.type) {
-    case LOGIN_REQUEST:
-      return Object.assign({}, state, {
-        isFetching: true,
-        isAuthenticated: false,
-        user: action.creds
-      });
-    case LOGIN_SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: false,
-        isAuthenticated: true,
-        errorMessage: ""
-      });
-    case LOGIN_FAILURE:
-      return Object.assign({}, state, {
-        isFetching: true,
-        isAuthenticated: false
-      });
+    case AUTH_USER:
+      return {
+        ...state,
+        error: "",
+        message: "",
+        authenticated: true
+      };
+    case UNAUTH_USER:
+      return {
+        ...state,
+        authenticated: false
+      };
+    case AUTH_ERROR:
+      return {
+        ...state,
+        error: action.payload
+      };
+    case PROTECTED_TEST:
+      return {
+        ...state,
+        content: action.payload
+      };
     default:
       return state;
   }
@@ -69,7 +81,8 @@ function usersReducer(
 
 const rootReducer = combineReducers({
   eventsReducer,
-  usersReducer
+  auth: usersReducer,
+  formReducer
 });
 
 export default rootReducer;
