@@ -1,7 +1,7 @@
 .events {
   border: 2px black solid;
   padding: 17px;
-  margin: 23px;
+  margin: 35px;
   background-image: url("../Images/cork.jpg");
   width: 800px;
 }
@@ -32,6 +32,13 @@ h2 {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  margin: 10px;
 }
 
 .bold {

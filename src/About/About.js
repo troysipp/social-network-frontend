@@ -6,9 +6,9 @@ import "./About.css";
 class About extends Component {
   render() {
     return (
-      <div className="about">
+      <div className="content">
         <h2>Wanna know more about us?</h2>
-        <div className="content">
+        <div>
           <p>
             We were founded on the idea that at some point in their life,
             everyone is going to be scouting new or old locations for places to

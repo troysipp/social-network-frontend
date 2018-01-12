@@ -1,5 +1,10 @@
-.content {
+.profile {
   background-color: #f69370;
   border: 2px black solid;
   margin: 35px;
+  padding-bottom: 20px;
 }
+
+/* button {
+  
+} */

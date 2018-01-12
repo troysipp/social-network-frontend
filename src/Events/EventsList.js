@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { axios } from "axios";
+import { Link } from "react-router-dom";
 
 import { fetchEventsIfNeeded } from "../actions/events";
 import store from "../store";
@@ -39,9 +40,12 @@ class EventsList extends Component {
               </p>
             </span>
             {store.getState().auth.authenticated && (
-              <span>
+              <span className="buttons">
                 <button type="submit" className="join">
                   Join em!
+                </button>
+                <button type="submit" className="join">
+                  See who's going
                 </button>
               </span>
             )}
@@ -56,6 +60,9 @@ class EventsList extends Component {
         <div className="events-list">
           {!this.props.events.length > 0 ? <p>Loading...</p> : events}
         </div>
+        {store.getState().auth.authenticated && (
+          <button className="join">Host one!</button>
+        )}
       </div>
     );
   }
