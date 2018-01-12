@@ -4,6 +4,7 @@ import { axios } from "axios";
 // import {Link} from "react-rourter-dom"
 
 import { fetchEventsIfNeeded } from "../actions/events";
+import "./EventsList.css";
 
 class EventsList extends Component {
   constructor(props) {
@@ -23,35 +24,34 @@ class EventsList extends Component {
     let events = this.props.events.map((event, i) => {
       // let pathname = `/events/...`
       return (
-        <li className="event" key={i}>
-          by {event.organizer.username}
-          Description:
-          {event.description}
-          Location:
-          {event.location}
-        </li>
+        <div className="event" key={i}>
+          <span className="bold">{event.description}</span>
+
+          <p>
+            <span>Location: {event.location}</span>
+            <span> by {event.organizer.username}</span>
+          </p>
+          <span className="attendance">
+            <span>
+              <p>Attendance #</p>
+            </span>
+            <span>
+              <button type="submit" className="join">
+                Join em!
+              </button>
+            </span>
+          </span>
+        </div>
       );
     });
 
     return (
       <div className="events">
-        <h2>Events</h2>
-        <ul className="events-list">
+        <h2>Events Near You!</h2>
+        <div className="events-list">
           {!this.props.events.length > 0 ? <p>Loading...</p> : events}
-        </ul>
+        </div>
       </div>
-      // {/* <div className="stocks">
-      //   {this.props.isFetching && stocks.length === 0 && <h2>Loading...</h2>}
-      //   {!this.props.isFetching && stocks.length === 0 && <h2>Empty.</h2>}
-      //   {stocks.length > 0 &&
-      //     <div>
-      //       <h2>Stocks</h2>
-      //       <ul className="stocks-list">
-      //         {stocks}
-      //       </ul>
-      //     </div>
-      //   }
-      // </div> */}
     );
   }
 }

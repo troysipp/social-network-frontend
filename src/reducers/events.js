@@ -58,8 +58,8 @@ function usersReducer(
         ...state,
         error: "",
         message: "",
-        authenticated: true,
-        currentUser: action.payload
+        authenticated: true
+        // currentUser: action.payload
       };
     case UNAUTH_USER:
       return {

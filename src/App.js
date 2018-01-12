@@ -6,11 +6,11 @@ import { connect } from "react-redux";
 
 import Home from "./Home/Home";
 import Profile from "./Profile/Profile";
-import Nav from "./Nav/Nav";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 import Logout from "./Logout/Logout";
 import Auth from "./Auth/Auth";
+import About from "./About/About";
 import store from "./store";
 import {
   loginUser,
@@ -52,10 +52,13 @@ class App extends Component {
     return (
       <div className="App">
         <div className="nav">
-          <h1>Title</h1>
+          <h1>JustForFriends</h1>
           <div className="nav-items">
             {store.getState().auth.authenticated && (
               <div>
+                <Link to="/about" className="nav-item">
+                  About
+                </Link>
                 <Link to="/home" className="nav-item">
                   Home
                 </Link>
@@ -70,6 +73,9 @@ class App extends Component {
             )}
             {!store.getState().auth.authenticated && (
               <div>
+                <Link to="/about" className="nav-item">
+                  About
+                </Link>
                 <Link to="/home" className="nav-item">
                   Home
                 </Link>
@@ -94,6 +100,7 @@ class App extends Component {
             }
           />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/about" component={About} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/logout" component={Logout} />

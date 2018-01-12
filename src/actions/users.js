@@ -4,21 +4,11 @@ import cookie from "js-cookie";
 import store from "../store";
 
 import {
-  // LOGIN_REQUEST,
-  // LOGIN_SUCCESS,
-  // LOGIN_FAILURE,
-  // LOGOUT_FAILURE,
-  // LOGOUT_REQUEST,
-  // LOGOUT_SUCCESS
   AUTH_USER,
   UNAUTH_USER,
   AUTH_ERROR,
   PROTECTED_TEST
 } from "../constants/users";
-// import { SUCCESS, ERROR, CLEAR } from "../constants/alerts";
-// import { success, error, clear } from "./alerts";
-// import {userService} from "../_services"
-// import {history} from "../_helpers"
 
 const apiUrl = "http://localhost:3001/";
 
@@ -54,12 +44,10 @@ export function loginUser({ email, password }) {
         password: store.getState().formReducer.login.values.password
       })
       .then(response => {
-        console.log("bananas");
-        console.log(response.config.data);
-        cookie.set(("token", response.data.token), { path: "/" });
-        dispatch({ type: AUTH_USER, payload: response.config.data });
-        window.location.href = `/?${response.config.data}`;
         console.log(response);
+        cookie.set("token", response.data.token, { path: "/" });
+        dispatch({ type: AUTH_USER });
+        window.location.href = "/";
       })
       .catch(error => {
         errorHandler(dispatch, error.response, AUTH_ERROR);

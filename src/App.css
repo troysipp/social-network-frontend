@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   background-color: #d4d4d4;
+  min-height: 1000px;
+  font-family: "Arvo", serif;
 }
 
 a {
@@ -21,9 +23,12 @@ a {
 .nav h1 {
   margin-left: 35px;
   margin-bottom: 80px;
-  padding: 20px;
+  padding: 10px 20px;
   background-color: #cf97d7;
   display: block;
+  font-family: "Bevan", cursive;
+  color: #006884;
+  border: 5px black solid;
 }
 
 .nav a {
@@ -42,7 +47,8 @@ a {
   margin-top: 105px;
   margin-bottom: 10px;
   margin-right: 10px;
-  padding: 15px;
+  padding: 9px;
+  padding-bottom: 5px;
   background-color: #5b5b5b;
 }
 
@@ -50,4 +56,14 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  border-bottom: 20px black solid;
+}
+
+.form {
+  margin: 35px;
+  padding: 18px;
+}
+
+.join {
+  background-color: #ffd08d;
 }

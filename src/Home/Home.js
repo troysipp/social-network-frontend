@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import "./Home.css";
+import store from "../store";
 import FriendsList from "../Friends/FriendsList";
 import EventsList from "../Events/EventsList";
 import * as actions from "../actions/users";
@@ -20,7 +21,7 @@ class Home extends Component {
     return (
       <div className="home-page">
         <EventsList events={this.props.events} />
-        <FriendsList />
+        {store.getState().auth.authenticated && <FriendsList />}
         {this.renderContent()}
       </div>
     );
