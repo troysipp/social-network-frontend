@@ -10,8 +10,8 @@ import {
   PROTECTED_TEST
 } from "../constants/users";
 
-const apiUrl = "https://protected-basin-65203.herokuapp.com";
-// "http://localhost:3001/";
+const apiUrl = "http://localhost:3001/";
+// "https://protected-basin-65203.herokuapp.com/";
 
 export function errorHandler(dispatch, error, type) {
   let errorMessage = "";

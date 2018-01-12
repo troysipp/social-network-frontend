@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   background-color: #d4d4d4;
-  min-height: 1000px;
+  min-height: 1050px;
   font-family: "Arvo", serif;
 }
 
@@ -16,7 +16,7 @@ a {
   justify-content: space-between;
   /* background-color: #d4d4d4; */
   background: url("./Images/Untitled copy.jpg");
-  max-width: 1585px;
+  max-width: 1800px;
   border-bottom: 12px solid #fa9d00;
 }
 
