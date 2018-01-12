@@ -62,7 +62,10 @@ class App extends Component {
                 <Link to="/profile" className="nav-item">
                   Profile
                 </Link>
-                <Link to="/logout" component={Logout} />
+                <Link to="/logout" className="nav-item">
+                  Logout
+                </Link>
+                {/* <Link to="/logout" component={Logout} /> */}
               </div>
             )}
             {!store.getState().auth.authenticated && (
@@ -82,6 +85,7 @@ class App extends Component {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/logout" component={Logout} />
           <Route path="/*" render={() => <Redirect to="/home" />} />
         </Switch>
       </div>

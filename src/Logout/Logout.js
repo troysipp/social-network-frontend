@@ -1,16 +1,30 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from "react";
+import { connect } from "react-redux";
 
-class Logout extends Component {
+import store from "../store";
+import { logoutUser } from "../actions/users";
+
+class Logout extends React.Component {
+  logout() {
+    console.log("logging out");
+    this.props.logoutUser();
+    this.props.history.push("/");
+  }
+
+  componentDidMount() {
+    this.logout();
+  }
+
   render() {
-    const { onLogoutClick } = this.props;
-
-    return <button onClick={() => onLogoutClick()}>Logout</button>;
+    return <div />;
   }
 }
 
-Logout.propTypes = {
-  onLogoutClick: PropTypes.func.isRequired
-};
+function mapStateToProps(state) {
+  return {
+    errorMessage: state.auth.error,
+    message: state.auth.message
+  };
+}
 
-export default Logout;
+export default connect(mapStateToProps, { logoutUser })(Logout);

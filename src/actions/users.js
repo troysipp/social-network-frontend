@@ -47,7 +47,6 @@ export function errorHandler(dispatch, error, type) {
 }
 
 export function loginUser({ email, password }) {
-  console.log(store.getState().formReducer.login.values);
   return function(dispatch) {
     axios
       .post(`${apiUrl}api/login`, {
@@ -55,7 +54,6 @@ export function loginUser({ email, password }) {
         password: store.getState().formReducer.login.values.password
       })
       .then(response => {
-        console.log(response);
         cookie.set("token", response.data.token, { path: "/" });
         dispatch({ type: AUTH_USER });
         window.location.href = "/";
@@ -69,7 +67,11 @@ export function loginUser({ email, password }) {
 export function registerUser({ email, username, password }) {
   return function(dispatch) {
     axios
-      .post(`${apiUrl}api/signup`, { email, username, password })
+      .post(`${apiUrl}api/signup`, {
+        email: store.getState().formReducer.register.values.email,
+        username: store.getState().formReducer.register.values.username,
+        password: store.getState().formReducer.register.values.password
+      })
       .then(response => {
         cookie.set("token", response.data.token, { path: "/" });
         dispatch({ type: AUTH_USER });

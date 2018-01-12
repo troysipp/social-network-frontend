@@ -8,12 +8,14 @@ const form = reduxForm({
   validate
 });
 
-const renderField = field => (
-  <div>
-    <input className="form-control" {...field.input} />
-    {field.touched && field.error && <div className="error">{field.error}</div>}
-  </div>
-);
+const formatField = value => value;
+
+// const renderField = field => (
+//   <div>
+//     <input className="form-control" {...field.input} />
+//     {field.touched && field.error && <div className="error">{field.error}</div>}
+//   </div>
+// );
 
 function validate(formProps) {
   const errors = {};
@@ -46,15 +48,30 @@ class Register extends Component {
         <div className="form">
           <div className="form-item">
             <label>Email</label>
-            <Field name="email" component={renderField} type="text" />
+            <Field
+              name="email"
+              component="input"
+              type="text"
+              format={formatField}
+            />
           </div>
           <div className="form-item">
             <label>Username</label>
-            <Field name="username" component={renderField} type="text" />
+            <Field
+              name="username"
+              component="input"
+              type="text"
+              format={formatField}
+            />
           </div>
           <div className="form-item">
             <label>Password</label>
-            <Field name="password" component={renderField} type="text" />
+            <Field
+              name="password"
+              component="input"
+              type="text"
+              format={formatField}
+            />
           </div>
           <button type="submit">Register</button>
         </div>
