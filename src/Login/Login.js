@@ -9,16 +9,6 @@ const form = reduxForm({
   form: "login"
 });
 
-// const renderField = field => {
-//   return (
-//     <div>
-//       <input className="form-control" {...field.input} />
-//       {field.touched &&
-//         field.error && <div className="error">{field.error}</div>}
-//     </div>
-//   );
-// };
-
 const formatField = value => value;
 
 class Login extends Component {
@@ -36,20 +26,21 @@ class Login extends Component {
     return (
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
         {this.renderAlert()}
+        <h2>Welcome back!</h2>
         <div className="form">
           <div className="form-item">
-            <label>Email</label>
             <Field
               name="email"
+              placeholder="Email"
               component="input"
               type="text"
               format={formatField}
             />
           </div>
           <div className="form-item">
-            <label>Password</label>
             <Field
               name="password"
+              placeholder="Password"
               component="input"
               type="text"
               format={formatField}

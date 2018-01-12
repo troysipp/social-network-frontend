@@ -10,13 +10,6 @@ const form = reduxForm({
 
 const formatField = value => value;
 
-// const renderField = field => (
-//   <div>
-//     <input className="form-control" {...field.input} />
-//     {field.touched && field.error && <div className="error">{field.error}</div>}
-//   </div>
-// );
-
 function validate(formProps) {
   const errors = {};
   if (!formProps.email) {
@@ -45,29 +38,30 @@ class Register extends Component {
     return (
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
         {this.renderAlert()}
+        <h2>Welcome! We're glad you're joining us!</h2>
         <div className="form">
           <div className="form-item">
-            <label>Email</label>
             <Field
               name="email"
+              placeholder="Email"
               component="input"
               type="text"
               format={formatField}
             />
           </div>
           <div className="form-item">
-            <label>Username</label>
             <Field
               name="username"
+              placeholder="Username"
               component="input"
               type="text"
               format={formatField}
             />
           </div>
           <div className="form-item">
-            <label>Password</label>
             <Field
               name="password"
+              placeholder="Password"
               component="input"
               type="text"
               format={formatField}

@@ -8,10 +8,6 @@ import {
   RECEIVE_EVENTS
 } from "../constants/events";
 import {
-  // LOGIN_REQUEST,
-  // LOGIN_SUCCESS,
-  // LOGIN_FAILURE,
-  // LOGOUT_SUCCESS
   AUTH_USER,
   UNAUTH_USER,
   AUTH_ERROR,
@@ -54,12 +50,13 @@ function usersReducer(
   console.log(action);
   switch (action.type) {
     case AUTH_USER:
+      console.log(action);
       return {
         ...state,
         error: "",
         message: "",
-        authenticated: true,
-        currentUser: action.payload
+        authenticated: true
+        // currentUser: action.payload
       };
     case UNAUTH_USER:
       return {

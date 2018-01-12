@@ -6,11 +6,11 @@ import { connect } from "react-redux";
 
 import Home from "./Home/Home";
 import Profile from "./Profile/Profile";
-import Nav from "./Nav/Nav";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 import Logout from "./Logout/Logout";
 import Auth from "./Auth/Auth";
+import About from "./About/About";
 import store from "./store";
 import {
   loginUser,
@@ -21,41 +21,17 @@ import {
 import "./App.css";
 
 class App extends Component {
-  // retrieveEvents() {
-  //   axios
-  //     .get(`http://localhost:3001/api/events`)
-  //     .then(res => {
-  //       this.setState({
-  //         events: res.data.events
-  //       });
-  //       console.log("dogs");
-  //       console.log(this.state);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }
-  //
-  // componentDidMount() {
-  //   console.log(this.state);
-  //   this.retrieveEvents(console.log());
-  // }
   render() {
-    // const {
-    //   dispatch,
-    //   quote,
-    //   isAuthenticated,
-    //   errorMessage,
-    //   isSecretQuote
-    // } = this.props;
-    // console.log(this.props);
     return (
       <div className="App">
         <div className="nav">
-          <h1>Title</h1>
+          <h1>JustForFriends</h1>
           <div className="nav-items">
             {store.getState().auth.authenticated && (
               <div>
+                <Link to="/about" className="nav-item">
+                  About
+                </Link>
                 <Link to="/home" className="nav-item">
                   Home
                 </Link>
@@ -65,11 +41,13 @@ class App extends Component {
                 <Link to="/logout" className="nav-item">
                   Logout
                 </Link>
-                {/* <Link to="/logout" component={Logout} /> */}
               </div>
             )}
             {!store.getState().auth.authenticated && (
               <div>
+                <Link to="/about" className="nav-item">
+                  About
+                </Link>
                 <Link to="/home" className="nav-item">
                   Home
                 </Link>
@@ -94,6 +72,7 @@ class App extends Component {
             }
           />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/about" component={About} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/logout" component={Logout} />
@@ -104,44 +83,4 @@ class App extends Component {
   }
 }
 
-// {/* <div className="site-entry"> */}
-// {/* <Login
-//       errorMessage={errorMessage}
-//       onLoginClick={creds => this.props.dispatch(loginUser(creds))}
-//     />
-//     <Link to="/register" className="nav-item">
-//       Register
-//     </Link>
-//   </div> */}
-// {/* )}
-// {isAuthenticated && ( */}
-// {/* // <Link */}
-// {/* //   to="/logout"
-//   //   className="nav-item"
-//   //   onLogoutClick={() => dispatch(logoutUser())}
-//   // >
-//   //   Logout
-//   // </Link>
-//   <Logout onLogoutClick={() => dispatch(logoutUser())} /> */}
-// {/* )} */}
-
-// App.propTypes = {
-//   dispatch: PropTypes.func.isRequired,
-//   isAuthenticated: PropTypes.bool.isRequired,
-//   errorMessage: PropTypes.string
-// };
-// //
-// function mapStateToProps(state) {
-//   const { auth } = state;
-//   // const { event, authenticated } = quotes;
-//   const { isAuthenticated, errorMessage } = auth;
-//
-//   return {
-//     isAuthenticated,
-//     errorMessage
-//   };
-// }
-
-export default // connect(mapStateToProps)(
-withRouter(App);
-// );
+export default withRouter(App);
