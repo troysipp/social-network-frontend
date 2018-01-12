@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { reducer as formReducer } from "redux-form";
 
 import {
   CREATE_EVENT,
@@ -6,6 +7,16 @@ import {
   REQUEST_EVENTS,
   RECEIVE_EVENTS
 } from "../constants/events";
+import {
+  // LOGIN_REQUEST,
+  // LOGIN_SUCCESS,
+  // LOGIN_FAILURE,
+  // LOGOUT_SUCCESS
+  AUTH_USER,
+  UNAUTH_USER,
+  AUTH_ERROR,
+  PROTECTED_TEST
+} from "../constants/users";
 
 function eventsReducer(
   state = {
@@ -20,7 +31,6 @@ function eventsReducer(
         isFetching: true
       });
     case RECEIVE_EVENTS:
-      console.log(action);
       return Object.assign({}, state, {
         isFetching: false,
         events: action.events,
@@ -31,8 +41,50 @@ function eventsReducer(
   }
 }
 
+function usersReducer(
+  state = {
+    error: "",
+    message: "",
+    content: "",
+    authenticated: false,
+    currentUser: ""
+  },
+  action
+) {
+  console.log(action);
+  switch (action.type) {
+    case AUTH_USER:
+      return {
+        ...state,
+        error: "",
+        message: "",
+        authenticated: true,
+        currentUser: action.payload
+      };
+    case UNAUTH_USER:
+      return {
+        ...state,
+        authenticated: false
+      };
+    case AUTH_ERROR:
+      return {
+        ...state,
+        error: action.payload
+      };
+    case PROTECTED_TEST:
+      return {
+        ...state,
+        content: action.payload
+      };
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
-  eventsReducer
+  eventsReducer,
+  auth: usersReducer,
+  formReducer
 });
 
 export default rootReducer;
