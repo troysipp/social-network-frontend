@@ -54,11 +54,11 @@ class App extends Component {
         <div className="nav">
           <h1>Title</h1>
           <div className="nav-items">
-            <Link to="/home" className="nav-item">
-              Home
-            </Link>
             {store.getState().auth.authenticated && (
               <div>
+                <Link to="/home" className="nav-item">
+                  Home
+                </Link>
                 <Link to="/profile" className="nav-item">
                   Profile
                 </Link>
@@ -70,6 +70,9 @@ class App extends Component {
             )}
             {!store.getState().auth.authenticated && (
               <div>
+                <Link to="/home" className="nav-item">
+                  Home
+                </Link>
                 <Link to="/login" className="nav-item">
                   Login
                 </Link>
@@ -81,7 +84,15 @@ class App extends Component {
           </div>
         </div>
         <Switch className="body">
-          <Route exact path="/home" component={Auth(Home)} />
+          <Route
+            exact
+            path="/home"
+            component={
+              // Auth(
+              Home
+              // )
+            }
+          />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />

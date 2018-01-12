@@ -35,7 +35,7 @@ export function errorHandler(dispatch, error, type) {
   if (error.status === 401) {
     dispatch({
       type: type,
-      payload: "Not authorized"
+      payload: "That doesn't quite cut it. Try again."
     });
     logoutUser();
   } else {
@@ -54,9 +54,12 @@ export function loginUser({ email, password }) {
         password: store.getState().formReducer.login.values.password
       })
       .then(response => {
-        cookie.set("token", response.data.token, { path: "/" });
-        dispatch({ type: AUTH_USER });
-        window.location.href = "/";
+        console.log("bananas");
+        console.log(response.config.data);
+        cookie.set(("token", response.data.token), { path: "/" });
+        dispatch({ type: AUTH_USER, payload: response.config.data });
+        window.location.href = `/?${response.config.data}`;
+        console.log(response);
       })
       .catch(error => {
         errorHandler(dispatch, error.response, AUTH_ERROR);

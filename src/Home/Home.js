@@ -19,8 +19,8 @@ class Home extends Component {
   render() {
     return (
       <div className="home-page">
-        {/* <EventsList events={this.props.events} />
-        <FriendsList /> */}
+        <EventsList events={this.props.events} />
+        <FriendsList />
         {this.renderContent()}
       </div>
     );

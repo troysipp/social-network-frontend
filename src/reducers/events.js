@@ -31,7 +31,6 @@ function eventsReducer(
         isFetching: true
       });
     case RECEIVE_EVENTS:
-      console.log(action);
       return Object.assign({}, state, {
         isFetching: false,
         events: action.events,
@@ -47,17 +46,20 @@ function usersReducer(
     error: "",
     message: "",
     content: "",
-    authenticated: false
+    authenticated: false,
+    currentUser: ""
   },
   action
 ) {
+  console.log(action);
   switch (action.type) {
     case AUTH_USER:
       return {
         ...state,
         error: "",
         message: "",
-        authenticated: true
+        authenticated: true,
+        currentUser: action.payload
       };
     case UNAUTH_USER:
       return {

@@ -27,3 +27,5 @@ export default function(ContainerComponent) {
 
   return connect(mapStateToProps)(Auth);
 }
+
+// UNCLEAR WHAT THIS DOES
